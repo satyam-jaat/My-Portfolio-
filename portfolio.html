@@ -120,6 +120,7 @@
         }
 
         .about img {
+            border-radius: 8px;
             height: 350px;
             width: 280px;
             position: relative;
@@ -183,20 +184,114 @@
             box-shadow: 0 4px 6px black;
         }
 
+        .projects-section {
+            margin-top: 100px;
+            display:flex;
+            /* flex-wrap: wrap; */
+            justify-content: center;
+            gap:20px;
+            padding:20px;
+            
+        }
+
+        .projects-box {
+            background-color:  white;
+            height: 500px;
+            width: 500px;
+            border-radius: 5px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position:relative;
+        }
+
+        .projects-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px black;
+        }
+
+        .projects-title{
+            font-weight: bold;
+            font-size: 20px;
+            padding: 20px;
+            color: rgb(5, 33, 5);
+        }
+
+        .projects-discription {
+            color: rgb(86, 86, 86);
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            padding-left:20px;
+            padding-right:20px;
+
+        }
+
+        .technologies {
+            font-weight: bold;
+            position: absolute;
+            top: 240px;
+            left: 20px;
+
+        }
+
+        .list {
+            text-align: left;
+            position: absolute;
+            top: 250px;
+        }
+
+        .project-view button{
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            position:absolute;
+            cursor: pointer;
+            bottom:20px;
+            right: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-view button:hover {
+            background-color:#357c37;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+
+        }
+
+        .project {
+            background-color:  rgba(184, 184, 184, 0.2);
+            padding-bottom: 30px;
+
+        }
+
+
         .projects {
             text-align: center;
             margin-top: 48px;
             padding-top: 20px;
-            background-color: rgba(184, 184, 184, 0.2);
-
         }
 
         .projects a{
             font-size: 35px;
             font-weight: bold;
             color: rgb(53, 125, 131);
+        }   
+
+        .contact {
+            text-align: center;
+            padding-bottom: 80px;
+            margin-top: 10px;
         }
 
+        .contact a{
+            font-size: 35px;
+            font-weight: bold;
+            text-align: center;
+            color: rgb(53, 125, 131);
+        }
+        
         footer {
             text-align: center;
             padding: 20px;
@@ -296,16 +391,94 @@
     </section>
 
 
-    <section>
+    <section class="project">
         <div class="projects" id="projects">
             <a href="#projects">Projects</a>
 
-            
+            <div class="projects-section">
+                <div class="projects-box"> 
+                    <div class="projects-title">Productivity Planner &#128221;</div>
+                    <div class="projects-discription">The Task Management System allows users to add daily tasks and track their progress using a chart that shows the percentage of work completed each day. It helps users monitor their performance, while task priority is managed manually by the user.</div>
+                    
+                    <div  class="project-view">
+                        <a href="https://github.com/satyam-jaat/Task_Management" target="_blank"><button>View Project</button></a>
+                    </div>
 
+                    <div class="technologies">Technologies Used:</div>
+
+                    <div class="list">
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>localStorage</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="projects-box">
+                    <div class="projects-title">Banking Management &#128176;</div>
+                    <div class="projects-discription">The Banking Management System lets users create accounts, deposit or withdraw money, and view transaction history, providing basic banking functionality in a user-friendly interface.</div>
+                
+                    <div class="project-view">
+                        <a href="#projects"><button>View Project</button></a>
+                    </div>
+
+                    <div class="technologies">Technologies Used:</div>
+                    <div class="list">
+                        <ul>
+                            <li>java</li>
+                            <li>JDBC</li>
+                            <li>OOPs</li>
+                            <li>SQL</li>
+                            <li>MYSQL</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="projects-box">
+                    <div class="projects-title">Classic Tic Tac Toe &#10060; &#11093;</div>
+                    <div class="projects-discription">Tic Tac Toe is a two-player game where players take turns marking X or O on a 3x3 grid, aiming to get three in a row.</div>
+                
+                    <div  class="project-view">
+                        <a href="https://github.com/satyam-jaat/TicTacToe-game-in-c-" target="_blank"><button>View Project</button></a>
+                    </div>
+
+                    <div class="technologies">Technologies Used:</div>
+                    <div class="list">
+                        <ul>
+                            <li>C++</li>
+                            <li>OOPs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="projects-box">
+                    <div class="projects-title">Hello, I'm Satyam Tomar &#128100;</div>
+                    <div class="projects-discription">This portfolio presents my work in software development, web development, showcasing projects that demonstrate my skills in programming languages, frameworks, and creative design.</div>
+                
+                    <div  class="project-view">
+                        <a href="https://github.com/satyam-jaat/My-Portfolio-" target="_blank"><button>View Project</button></a>
+                    </div>
+
+                    <div class="technologies">Technologies Used:</div>
+                    <div class="list">
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
         </div>
+
     </section>
 
+    <section>
+        <div class="contact" id="contact">
+            <a href="#contact">Contact</a>
+    </section>
 
     <footer>
         <p>&copy; 2025 Satyam Tomar. All rights reserved.</p>
