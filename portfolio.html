@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Satyam_Portfolio</title>
+    <link rel="images/icon" href="logo.png" type="image/x-icon" />
 
     <style>
         html {
@@ -46,7 +47,7 @@
 
         .header_name {
             text-align: left;
-            padding-left: 100px;
+            padding-left: 90px;
             display: flex;
             font-size: 25px;
             font-weight: bold;
@@ -60,7 +61,7 @@
         .header_details {
             display: flex;
             font-size: 18px;
-            padding-left: 780px;
+            padding-left: 700px;
             gap: 20px;
 
         }
@@ -111,6 +112,22 @@
 
         }
 
+        .resume {
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 80px;
+            margin-top: 120px;
+            background-color: rgba(184, 184, 184, 0.2);
+        }
+
+        .resume a {
+            margin-top: 10px;
+            font-size: 35px;
+            /* text-decoration: underline; */
+            font-weight: bold;
+            color: rgb(53, 125, 131);
+        }
+
         .about a {
             margin-top: 10px;
             font-size: 35px;
@@ -138,6 +155,7 @@
             position: absolute;
 
         }
+
 
         .about-para h2 {
             padding-top: 150px;
@@ -282,8 +300,8 @@
 
         .contact {
             text-align: center;
-            padding-bottom: 80px;
-            margin-top: 10px;
+            padding-bottom: 40px;
+            padding-top: 30px;
         }
 
         .contact a {
@@ -295,7 +313,7 @@
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 10px;
             background-color: #f5f5f5;
             margin-top: 50px;
         }
@@ -348,6 +366,126 @@
             transform: translateY(-5px);
         }
 
+        /* Resume Section */
+        .resume-container {
+            text-align: center;
+            /* margin: 40px auto; */
+        }
+
+        .resume-box {
+            width: 30%;
+            /* Adjust width for better visibility */
+            height: 602px;
+            /* Increase height */
+            /* margin: 100px auto; */
+            border: none;
+            /* No black border */
+            /* border-radius: 15px; */
+            /* Soft corners */
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            /* Subtle shadow */
+        }
+
+        .resume-box embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+            /* Ensure no border on embed */
+        }
+
+
+        /* Download Button */
+        .download-btn {
+            background-color: #00b33f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 50px;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #009835;
+            box-shadow: 0px 0px 1px 1px rgba(128, 128, 128, 0.623);
+        }
+
+        .resume-download-container {
+            padding-top: 80px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+
+        .touch {
+            text-align: center;
+            margin-top: 48px;
+            margin-bottom: 100px;
+        }
+
+        .touch a {
+            font-size: 35px;
+            font-weight: bold;
+            color: rgb(53, 125, 131);
+        }
+        
+        .contact-me-container {
+            max-width: 600px;
+            /* padding-bottom: 100px; */
+            margin-top: 100px;
+            margin-left: 320px;
+            /* margin: 0 auto; */
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+            background-color: white;
+        }
+
+        .contact-me-container h2 {
+            color: rgb(53, 125, 131);
+        }
+
+        .contact-me-container p {
+            color: rgb(77, 77, 77);
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            font-size: 16px;
+        }
+
+        .bt {
+           width: 35%;
+           font-size: 20px;
+           height: 40px;
+           border-radius: 10px;
+           border: none;
+           /* box-shadow: 0 6px 10px rgba(0,0,0,0.5); */
+           background-color: #00b33f;
+           color: white;
+           margin: 0 auto;
+        }
+
+        .bt:hover {
+            background-color: #009835;
+            box-shadow: 0px 0px 1px 1px rgba(128, 128, 128, 0.623);
+        }
+
 
     </style>
 
@@ -366,7 +504,8 @@
                     <a href="#about">About</a>
                     <a href="#skills">Skills</a>
                     <a href="#projects">Projects</a>
-                    <a href="#">Contact</a>
+                    <a href="#contact">Connect</a>
+                    <a href="#resume">Resume</a>
                 </span>
             </div>
         </nav>
@@ -375,12 +514,12 @@
     <div>
         <div class="intro">
             <h1>Hi! I am Satyam Tomar </h1>
-            <h2>Aspiring Software Engineering</h2>
+            <h2>Aspiring Software Engineer</h2>
         </div>
 
 
         <div class="image_container">
-            <img src="MyPhoto.jpg" alt="st" height="150" width="100">
+            <img src="images/MyPhoto.jpg" alt="st" height="150" width="100">
         </div>
 
     </div>
@@ -410,7 +549,7 @@
 
 
 
-                <img src="MyPhoto.jpg" alt="my image">
+                <img src="images/MyPhoto.jpg" alt="my image">
 
             </div>
 
@@ -612,8 +751,47 @@
             </div>
     </section>
 
+
+    <section>
+        <div class="resume" id="resume">
+            <a href="#resume">My Resume</a>
+
+            <div class="resume-download-container">
+                <!-- Resume Preview Box -->
+                <div class="resume-box">
+                    <embed src="resume/resume.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" />
+                </div>
+
+                <!-- Download Button -->
+                <a href="resume/resume.pdf" download="Satyam_Tomar_Resume.pdf">
+                    <button class="download-btn">Download Here</button>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="touch" id="touch">
+            <a href="#touch">Get in Touch</a>
+
+            <div class="contact-me-container">
+                <p>If you have any queries, suggestions, or just want to connect, feel free to send me a message!</p>
+    
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <button class="bt" type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
     <footer>
-        <p>&copy; 2025, developed by Satyam</p>
+        <p>&copy; 2025, Created with ❤️ by <strong>Satyam Tomar</strong></p>
     </footer>
 
 </body>
