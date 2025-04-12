@@ -8,6 +8,10 @@
     <link rel="icon" href="logo.png" type="image/x-icon" />
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -26,77 +30,198 @@
             padding: 10px 0;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             position: sticky;
-            /* Stays on top */
             top: 0;
             width: 100%;
             z-index: 1000;
+            overflow: visible;
+            /* Allow dropdown to appear outside header */
         }
-
 
         .header_name {
-            text-align: left;
-            padding: 0 50px;
             display: flex;
-            font-size: 25px;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            /* Pushes logo and hamburger apart */
+            padding: 0 20px;
+            font-size: 30px;
             font-weight: bold;
-
         }
 
-        .header_name a {
+        .logo {
             color: rgb(53, 125, 131);
             font-family: "Verdana";
         }
 
         .header_details {
-            margin-left: auto;
-            font-size: 18px;
-            padding-left: 0px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 22px;
+            background-color: rgba(245, 245, 245, 0.95);
+            border-left: 1px solid rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: translateX(100%);
+            opacity: 0;
         }
 
         .header_details a {
             color: rgb(111, 111, 111);
-            padding-right: 10px;
         }
 
-        /* Intro Section */
+        /* Hamburger Menu */
+        .nav-toggle {
+            display: none;
+            /* Hidden checkbox */
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            background-color: rgb(53, 125, 131);
+            height: 3px;
+            width: 100%;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .header_name {
+                display: flex;
+                flex-direction: row;
+                /* Keep logo and hamburger in a row */
+                align-items: center;
+                /* Center vertically */
+                justify-content: space-between;
+                /* Push logo to left, hamburger to right */
+                padding: 0 20px;
+                position: relative;
+                /* Ensure hamburger stays in flow */
+            }
+
+            .hamburger {
+                display: flex;
+                /* Show hamburger */
+                order: 2;
+                /* Ensure hamburger comes after logo */
+            }
+
+            .logo {
+                order: 1;
+                /* Logo stays first */
+            }
+
+            .header_details {
+                display: none;
+                /* Hide nav links by default */
+                position: absolute;
+                top: 100%;
+                /* Position directly below header */
+                left: 0;
+                right: 0;
+                background-color: #f5f5f5;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+                /* Ensure it appears above other content */
+                width: 100%;
+                /* Full width */
+            }
+
+            .nav-toggle:checked ~ .header_details {
+    display: flex;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+            .nav-toggle {
+                display: none;
+                /* Keep checkbox hidden */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header_name {
+                font-size: 20px;
+                padding: 0 15px;
+                /* Slightly reduce padding for smaller screens */
+            }
+
+            .hamburger {
+                width: 25px;
+                /* Slightly smaller hamburger for tiny screens */
+                height: 18px;
+            }
+
+            .hamburger span {
+                height: 2px;
+                /* Thinner lines for hamburger */
+            }
+
+            .header_details a {
+                font-size: 16px;
+            }
+        }
+
         h1 {
-            padding-top: 150px;
-            padding-left: 200px;
+            padding-top: 50px;
+            /* Reduced for mobile */
+            padding-left: 20px;
+            /* Adjusted for mobile */
             font-size: 50px;
             text-align: left;
         }
 
         h2 {
             text-align: left;
-            color: rgb(76, 76, 76);
-            padding: 10px 10px;
-            padding-left: 230px;
+            color: rgb(50, 50, 50);
+            padding: 10px 20px;
+            /* Adjusted for mobile */
         }
 
         .image_container {
-            padding-left: 820px;
-            padding-top: 120px;
-            padding-right: 20px;
-            padding-bottom: 20px;
-            width: 350px;
-            height: 400px;
-            overflow: hidden;
-            position: relative;
+            margin: 20px;
+            /* Reduced margin for mobile */
+            width: 420px;
+            height: 450px;
+            min-width: 250px;
+            /* Prevent excessive shrinking */
         }
 
         .image_container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 500px;
-            box-shadow: 0px 4px 10px black;
+            border-radius: 20px 100px 20px;
+            box-shadow: 0px 5px 8px rgba(49, 48, 48, 0.658);
         }
 
         .intro {
-            padding-top: 70px;
-            position: absolute;
+            flex: 1;
+            /* Allow text to take available space */
+            margin: 0 20px;
+            /* Consistent margin */
+        }
+
+        .home {
+            margin-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow wrapping for smaller screens */
+            justify-content: center;
+            /* Center content */
+            align-items: flex-start;
+            /* Align items to top */
+            gap: 20px;
+            /* Space between image and text */
         }
 
         /* About Section */
@@ -108,36 +233,53 @@
             background-color: rgba(184, 184, 184, 0.2);
         }
 
+        .para {
+            margin-top: 20px;
+            /* Reduced for mobile */
+        }
+
         .about a {
             margin-top: 10px;
+
             font-size: 35px;
             font-weight: bold;
             color: rgb(53, 125, 131);
         }
 
-        .about img {
-            border-radius: 8px;
-            height: 350px;
-            width: 280px;
-            position: relative;
-            margin-left: -800px;
-            margin-top: -80px;
-            padding-bottom: 50px;
+        .img2-container {
+            margin: 20px;
+            width: 380px;
+            height: 450px;
         }
 
-        .about-para h2 {
-            padding-top: 150px;
-            padding-left: 600px;
+        .img2-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 100px 20px 20px;
+            box-shadow: 0px 5px 8px rgba(49, 48, 48, 0.658);
+        }
+
+        .about-para {
             display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            /* Allow wrapping for mobile */
+            margin: 0 20px;
+            /* Consistent margin */
         }
 
         .about-para p {
-            height: 200px;
+            height: auto;
+            /* Allow natural height */
             width: 700px;
-            padding-left: 600px;
+            max-width: 100%;
+            /* Prevent overflow */
             text-align: left;
-            position: absolute;
-            color: rgb(93, 93, 93);
+            font-size: 18px;
+            color: rgb(31, 31, 31);
+            margin: 20px 0;
+            /* Spacing */
         }
 
         /* Skills Section */
@@ -169,7 +311,7 @@
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
             padding: 20px;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 5px 20px 5px;
             font-size: 16px;
             font-weight: bold;
             transition: transform 0.5s, box-shadow 0.2s;
@@ -201,6 +343,8 @@
         .projects-section {
             margin-top: 100px;
             display: flex;
+            flex-wrap: wrap;
+            /* wrap items to next row after 3 */
             justify-content: center;
             gap: 20px;
             padding: 20px;
@@ -210,10 +354,22 @@
             background-color: white;
             height: 500px;
             width: 400px;
-            border-radius: 5px;
+            border-radius: 15px 60px;
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
             transition: transform 0.5s, box-shadow 0.2s;
             position: relative;
+            /* important */
+            padding-bottom: 20px;
+            /* optional: to prevent text overlap with button */
+        }
+
+        .projects-box h2 {
+            text-align: center;
+            padding: 0px;
+        }
+
+        .projects-box p {
+            padding-top: 5px;
         }
 
         .projects-box:hover {
@@ -221,21 +377,21 @@
             box-shadow: 0 4px 6px black;
         }
 
-        .projects-title {
+        /* .projects-title {
             font-weight: bold;
             font-size: 20px;
             padding: 20px;
             color: rgb(5, 33, 5);
-        }
+        } */
 
-        .projects-discription {
+        /* .projects-discription {
             color: rgb(86, 86, 86);
             text-align: center;
             margin-top: 20px;
             padding: 10px 20px;
-        }
+        } */
 
-        .technologies {
+        /* .technologies {
             font-weight: bold;
             position: absolute;
             top: 240px;
@@ -246,25 +402,25 @@
             text-align: left;
             position: absolute;
             top: 250px;
-        }
+        } */
 
-        .project-view button {
+        .projects-box button {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 5px;
-            position: absolute;
+            padding: 10px 15px;
+            border-radius: 10px 30px 10px;
             cursor: pointer;
-            bottom: 20px;
-            right: 20px;
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .project-view button:hover {
-            background-color: #357c37;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+        .projects-box button:hover {
+            background-color: #409743dd;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(153, 153, 153, 0.5);
         }
 
         /* Contact Section */
@@ -301,7 +457,7 @@
             color: #333;
             padding: 12px 15px;
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
+            border-radius: 5px 20px 5px;
             transition: transform 0.5s, box-shadow 0.2s;
             text-align: center;
         }
@@ -352,7 +508,7 @@
             padding: 10px 20px;
             font-size: 18px;
             margin-top: 50px;
-            border-radius: 13px;
+            border-radius: 10px 30px 10px;
             cursor: pointer;
             transition: 0.3s;
         }
@@ -384,10 +540,13 @@
 
         .contact-me-container {
             max-width: 600px;
-            margin-top: 100px;
-            margin-left: 320px;
-            padding: 50px;
-            border-radius: 10px;
+            width: 90%;
+            /* Use percentage to fit within viewport */
+            margin: 100px auto;
+            /* Center horizontally, keep vertical margin */
+            padding: 30px;
+            /* Slightly reduce padding for better fit */
+            border-radius: 20px 100px 20px;
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
             background-color: white;
         }
@@ -401,6 +560,143 @@
             margin-bottom: 30px;
         }
 
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+
+            /* Existing styles */
+            .contact-me-container {
+                width: 95%;
+                margin: 50px auto;
+                padding: 20px;
+            }
+
+            /* Updated styles */
+            .profile-container {
+                margin: 80px auto;
+                width: 90%;
+                padding: 0;
+            }
+
+            .profile-links {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .profile-links a {
+                max-width: 150px;
+                font-size: 16px;
+                padding: 10px 12px;
+            }
+
+            .home {
+                flex-direction: column;
+                /* Stack image and text */
+                align-items: center;
+                /* Center items */
+            }
+
+            .image_container {
+                width: 300px;
+                /* Slightly larger for mobile */
+                height: 350px;
+                margin: 20px auto;
+                /* Center image */
+            }
+
+            .intro {
+                margin: 0 20px;
+                /* Consistent margin */
+                text-align: center;
+                /* Center text for better appearance */
+            }
+
+            h1 {
+                padding-top: 20px;
+                padding-left: 0;
+                font-size: 40px;
+                text-align: center;
+                /* Center for mobile */
+            }
+
+            h2 {
+                padding-left: 0;
+                padding: 10px 0;
+                text-align: center;
+                /* Center for mobile */
+            }
+
+            .about-para {
+                flex-direction: column;
+                /* Stack elements */
+                align-items: center;
+                /* Center content */
+            }
+
+            .img2-container {
+                display: none;
+                /* Hide image in mobile view */
+            }
+
+            .about-para p {
+                width: 100%;
+                /* Full width */
+                max-width: 90%;
+                /* Prevent overflow */
+                margin: 0 auto;
+                /* Center paragraph */
+                text-align: center;
+                /* Center text for mobile */
+            }
+
+            .para {
+                margin-top: 10px;
+                /* Adjust spacing */
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .image_container {
+                width: 250px;
+                height: 300px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .about-para p {
+                font-size: 16px;
+                /* Slightly smaller for readability */
+            }
+
+            .contact-me-container {
+                width: 100%;
+                /* Full width for very small screens */
+                margin: 30px auto;
+                /* Further reduce margin */
+                padding: 15px;
+                /* Minimal padding */
+            }
+
+            .contact-me-container p {
+                font-size: 14px;
+                /* Smaller text for readability */
+            }
+
+            .bt {
+                width: 60%;
+                /* Slightly wider button for small screens */
+                font-size: 16px;
+                /* Smaller button text */
+                height: 35px;
+            }
+        }
+
         form {
             display: flex;
             flex-direction: column;
@@ -412,7 +708,7 @@
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 15px;
+            border-radius: 10px 30px 10px;
             font-size: 16px;
         }
 
@@ -420,7 +716,7 @@
             width: 35%;
             font-size: 20px;
             height: 40px;
-            border-radius: 10px;
+            border-radius: 10px 30px 10px;
             border: none;
             background-color: #00b33f;
             color: white;
@@ -450,8 +746,7 @@
 
             .image_container {
                 padding-left: 0;
-                margin: 0 auto;
-                padding-top: 20px;
+                padding-top: 20x;
             }
 
             .about img {
@@ -548,6 +843,31 @@
                 flex-direction: column;
                 gap: 20px;
             }
+
+            .profile-container {
+                margin: 80px auto;
+                /* Center horizontally */
+                width: 90%;
+                /* Responsive width */
+                padding: 0;
+                /* Remove unnecessary padding */
+            }
+
+            .profile-links {
+                justify-content: center;
+                /* Center the buttons */
+                gap: 15px;
+                /* Reduce gap between buttons */
+            }
+
+            .profile-links a {
+                max-width: 150px;
+                /* Smaller button width */
+                font-size: 16px;
+                /* Smaller font size */
+                padding: 10px 12px;
+                /* Reduced padding for compactness */
+            }
         }
 
         @media (max-width: 480px) {
@@ -594,9 +914,152 @@
             .bt {
                 width: 50%;
             }
+
+            .contact-me-container {
+                border-radius: 10px 50px 10px;
+            }
+
+            .profile-container {
+                margin: 50px auto;
+                /* Slightly reduce margin for smaller screens */
+                width: 95%;
+                /* Slightly wider for very small screens */
+            }
+
+            .profile-links {
+                gap: 10px;
+                /* Further reduce gap */
+            }
+
+            .profile-links a {
+                max-width: 120px;
+                /* Even smaller buttons */
+                font-size: 14px;
+                /* Smaller font size */
+                padding: 8px 10px;
+                /* Minimal padding */
+            }
         }
 
+        @media (max-width: 768px) {
+            .header_name {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 20px;
+            }
 
+            .hamburger {
+                display: flex;
+                order: 2;
+            }
+
+            .logo {
+                order: 1;
+            }
+
+            .header_details {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #f5f5f5;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+                width: 100%;
+            }
+
+            .nav-toggle:checked+.hamburger+.header_details {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header_name {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 30px;
+                height: 20px;
+                cursor: pointer;
+            }
+
+            .hamburger span {
+                background-color: rgb(53, 125, 131);
+                height: 3px;
+                width: 100%;
+                border-radius: 2px;
+                transition: all 0.3s ease;
+            }
+
+            .header_details {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                /* Align to the right */
+                left: auto;
+                /* Prevent stretching to the left */
+                width: 200px;
+                /* Fixed width for the dropdown */
+                background-color: #f5f5f5;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+                border-radius: 20px 50px 20px;
+                /* Apply border radius */
+            }
+
+            .nav-toggle:checked~.header_details {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: none;
+            }
+
+            .header_details a {
+                font-size: 18px;
+                /* Slightly smaller font for compact dropdown */
+                padding: 10px 0;
+                width: 100%;
+                text-align: center;
+                /* Center text within the dropdown */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle:checked+.header_name .hamburger span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .nav-toggle:checked+.header_name .hamburger span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle:checked+.header_name .hamburger span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+        }
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -607,31 +1070,39 @@
 
     <header>
         <nav class="na">
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
             <div class="header_name">
-                <a href="#">Satyam</a>
-                <span class="header_details">
-                    <a href="#">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Socials</a>
-                    <a href="#resume">Resume</a>
-                    <a href="#touch">contact</a>
-                </span>
+                <a href="#" class="logo">Satyam</a>
+                <label for="nav-toggle" class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
             </div>
+            <span class="header_details">
+                <a href="#">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Socials</a>
+                <a href="#resume">Resume</a>
+                <a href="#touch">contact</a>
+            </span>
         </nav>
     </header>
 
-    <div>
-        <div class="intro">
-            <h1>Hi! I am Satyam Tomar </h1>
-            <h2>Aspiring Software Engineer</h2>
-        </div>
 
+    <div class="home">
 
         <div class="image_container">
-            <img src="MyPhoto.jpg" alt="st" height="150" width="100">
+            <img src="its me.jpeg" alt="my image">
         </div>
+
+        <div class="intro">
+            <h1>Hi! I am Satyam Tomar </h1>
+            <h2>Aspiring Machine Learning Engineer</h2>
+        </div>
+
 
     </div>
 
@@ -641,28 +1112,29 @@
 
             <div class="about-para">
 
-                <h2>
-                    I'm Satyam Tomar
-                </h2>
 
-                <p>A passionate B.Tech Computer Science and Engineering student at Lovely Professional University,
-                    currently
-                    in my
-                    second year. I’m enthusiastic about exploring and mastering various technologies to build innovative
-                    solutions.
-                    <br><br>
-                    I’m actively working on enhancing my skills in Java, backend and frontend web development, SQL, and
-                    MongoDB,
-                    while also diving deep into Data Structures and Algorithms (DSA) and learning the concept of Machine
-                    Learning(Supervised and Unsupervised Learning). My goal is to become a versatile
-                    developer
-                    with a strong foundation in both software development and Machine Learning with problem-solving
-                    ability.
-                </p>
+                <div class="img2-container">
+                    <img src="me.jpeg" alt="my image">
+                </div>
 
+                <div class="para">
+                    <h2>
+                        I'm Satyam Tomar
+                    </h2>
 
-
-                <img src="MyPhoto.jpg" alt="my image">
+                    <p>
+                        I’m a B.Tech Computer Science and Engineering student at Lovely Professional University,
+                        currently in my second year. I'm passionate about learning new technologies and building useful
+                        projects.
+                        <br><br>
+                        Right now, I’m focusing on Java, web development using the MERN stack, SQL, and MongoDB. I'm
+                        also improving my Data Structures and Algorithms (DSA) skills.
+                        <br><br>
+                        I’ve chosen Machine Learning as my elective and currently learning Supervised Learning. I aim to
+                        become a Machine Learning Engineer by gaining a strong base in both development and machine
+                        learning.
+                    </p>
+                </div>
 
             </div>
 
@@ -678,6 +1150,7 @@
                 <div class="skill-box">Java</div>
                 <div class="skill-box">DSA</div>
                 <div class="skill-box">C++</div>
+                <div class="skill-box">Python</div>
                 <div class="skill-box">Numpy</div>
                 <div class="skill-box">Pandas</div>
                 <div class="skill-box">OOPs</div>
@@ -686,10 +1159,7 @@
                 <div class="skill-box">BootStrap</div>
                 <div class="skill-box">JavaScript</div>
                 <div class="skill-box">Nodejs</div>
-                <div class="skill-box">Expressjs</div>
-                <div class="skill-box">reactjs</div>
                 <div class="skill-box">REST APIs</div>
-                <div class="skill-box">MongoDB</div>
                 <div class="skill-box">SQL</div>
                 <div class="skill-box">Git</div>
                 <div class="skill-box">GitHub</div>
@@ -703,138 +1173,127 @@
         <div class="projects" id="projects">
             <a href="#projects">Projects</a>
 
-            <div>
-                <div class="projects-section">
+            <div class="projects-section">
 
-                    <div class="projects-box">
-                        <div class="projects-title">AI-Based Interview Preparation System &#128221;</div>
-                        <div class="projects-discription">AI-powered interactive system for real-time speech-to-speech
-                            mock interviews.
-                            Analyzes responses, tracks performance, and provides graphical insights.
-                            Offers data-driven feedback to help users refine their interview skills.
-                        </div>
-
-                        <div class="project-view">
-                            <a href="https://github.com/satyam-jaat/Ai_based_Interview_" target="_blank"><button>View
-                                    Project</button></a>
-                        </div>
-
-                        <div class="technologies">Technologies Used:</div>
-
-                        <div class="list">
-                            <ul>
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>BootStrap</li>
-                                <li>JavaScript</li>
-                                <li>Three.js</li>
-                                <li>Python(Flask, Flask-CORS, speech_recognition, gTTS, spacy)</li>
-                                <li>Dataset (.json)</li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-                    <div class="projects-box">
-                        <div class="projects-title">Daily Task Tracker &#128221;</div>
-                        <div class="projects-discription">The Task Management System allows users to add daily tasks and
-                            track their progress using a chart that shows the percentage of work completed each day. It
-                            helps users monitor their performance, while task priority is managed manually by the user.
-                        </div>
-
-                        <div class="project-view">
-                            <a href="https://github.com/satyam-jaat/Task_Management" target="_blank"><button>View
-                                    Project</button></a>
-                        </div>
-
-                        <div class="technologies">Technologies Used:</div>
-
-                        <div class="list">
-                            <ul>
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>JavaScript</li>
-                                <li>localStorage</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="projects-box">
-                        <div class="projects-title">Classic Tic Tac Toe &#10060; &#11093;</div>
-                        <div class="projects-discription">Tic Tac Toe is a two-player game where players take turns
-                            marking
-                            X or O on a 3x3 grid, aiming to get three in a row.</div>
-
-                        <div class="project-view">
-                            <a href="https://github.com/satyam-jaat/TicTacToe-game-in-c-" target="_blank"><button>View
-                                    Project</button></a>
-                        </div>
-
-                        <div class="technologies">Technologies Used:</div>
-                        <div class="list">
-                            <ul>
-                                <li>C++</li>
-                                <li>OOPs</li>
-                            </ul>
-                        </div>
-                    </div>
-
+                <div class="projects-box">
+                    <h2>CardioScan 🫀</h2>
+                    <p style="text-align: left; padding: 15px">
+                        A machine learning-based system that classifies ECG images as normal or abnormal using Convolutional Neural Networks (CNN) and MobileNetV2.
+                        Upload an ECG image and get instant results to support cardiac diagnosis.
+                    </p>
+                
+                    <h3>Technologies Used:</h3>
+                    <p style="text-align: left; padding: 15px">
+                        HTML | CSS | JavaScript | Bootstrap | Uiverse | Python(Flask) | NumPy | Pandas | CNN | MobileNetV2 | Image Dataset (GitHub)
+                    </p>
+                
+                    <a href="https://github.com/satyam-jaat/normal-abnormal-ecg" target="_blank">
+                        <button>View Project</button>
+                    </a>
                 </div>
-                <div>
-                    <div class="projects-section">
 
-                        <div class="projects-box">
-                            <div class="projects-title">Hello, I'm Satyam Tomar &#128100;</div>
-                            <div class="projects-discription">This portfolio presents my work in software development,
-                                web
-                                development, showcasing projects that demonstrate my skills in programming languages,
-                                frameworks, and creative design.</div>
+                <div class="projects-box">
+                    <h2>ChatBot using Gemini API 💬</h2>
+                    <p style="text-align: left; padding: 15px">
+                        An intelligent and interactive ChatBot powered by Gemini API with a beautiful frontend design. It provides conversational responses using AI and serves as a virtual assistant through a seamless user interface.
+                    </p>
+                
+                    <h3>Technologies Used:</h3>
+                    <p style="text-align: left; padding: 15px">
+                        HTML | CSS | JavaScript | Python | Flask | Gemini API
+                    </p>
+                
+                    <a href="https://github.com/satyam-jaat/Gemini-API-ChatBot" target="_blank">
+                        <button>View Project</button>
+                    </a>
+                </div>
+                
 
-                            <div class="project-view">
-                                <a href="https://github.com/satyam-jaat/My-Portfolio-" target="_blank"><button>View
-                                        Project</button></a>
-                            </div>
+                <div class="projects-box">
+                    <h2>Bubble-Based Skills Tracker 🎈</h2>
+                    <p style="text-align: left; padding: 15px">
+                        A creative bubble-based system to track skill development. Users can add new skills as floating bubbles, and pop them when completed, making skill management fun and interactive.
+                    </p>
+                
+                    <h3>Technologies Used:</h3>
+                    <p style="text-align: left; padding: 15px">
+                        HTML | CSS | JavaScript
+                    </p>
+                
+                    <a href="https://github.com/satyam-jaat/InteractiveSkillTracker" target="_blank">
+                        <button>View Project</button>
+                    </a>
+                </div>
+                
+                <div class="projects-box">
+                    <h2>Web Code Editor 🧑‍💻</h2>
+                    <p style="text-align: left; padding: 15px">
+                        A live code editor inspired by VS Code using Monaco Editor. Allows users to create and edit HTML, CSS, and JavaScript files on the left, while previewing the output in real-time on the right. Includes a toggle to switch to full preview mode.
+                    </p>
+                
+                    <h3>Technologies Used:</h3>
+                    <p style="text-align: left; padding: 15px">
+                        HTML | CSS | JavaScript | Monaco Editor | iframe | Live Preview
+                    </p>
+                
+                    <a href="https://github.com/satyam-jaat/lite-web-dev-editor" target="_blank">
+                        <button>View Project</button>
+                    </a>
+                </div>
+                
 
-                            <div class="technologies">Technologies Used:</div>
-                            <div class="list">
-                                <ul>
-                                    <li>HTML</li>
-                                    <li>CSS</li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="projects-box">
+                    <h2>AI-Based Interview Preparation System &#128221;</h2>
+                    <p style="text-align: left; padding: 15px">AI-powered interactive system for real-time
+                        speech-to-speech mock interviews. Analyzes responses, tracks performance, and provides graphical
+                        insights. Offers data-driven feedback to help users refine their interview skills.</p>
+                    <h3>Technologies Used:</h3>
+                    <p style="text-align: left; padding: 15px">HTML | CSS | BootStrap | JavaScript | Three.js |
+                        Python(Flask, Flask-CORS) | speech_recognition | gTTS | spacy | Dataset (.json)</p>
+                    <button onclick="window.open('https://github.com/satyam-jaat/Ai_based_Interview_', '_blank')">View
+                        Project</button>
+                </div>
 
-                        <div class="projects-box">
-                            <div class="projects-title">Banking Management &#128176;</div>
-                            <div class="projects-discription">The Banking Management System lets users create accounts,
-                                deposit
-                                or withdraw money, and view transaction history, providing basic banking functionality
-                                in a
-                                user-friendly interface.</div>
+                <div class="projects-box">
+                    <h2>Daily Task Tracker &#128221;</h2>
+                    <p style="text-align: left; padding: 15px">The Task Management System allows users to add daily
+                        tasks and track their progress using a chart that shows the percentage of work completed each
+                        day.</p>
+                    <h3>Technologies Used:</h3>
+                    <p style="text-align: left; padding: 15px">HTML | CSS | JavaScript | localStorage</p>
+                    <a href="https://github.com/satyam-jaat/Task_Management" target="_blank">
+                        <button>View Project</button>
+                    </a>
+                </div>
 
-                            <div class="project-view">
-                                <a href="#projects"><button>View Project</button></a>
-                            </div>
+                <div class="projects-box">
+                    <h2>Hello, I'm Satyam Tomar &#128100;</h2>
+                    <p style="text-align: left; padding: 15px">This portfolio presents my work in software development,
+                        web development, showcasing projects that demonstrate my skills in programming languages,
+                        frameworks, and creative design.</p>
+                    <h3>Technologies Used:</h3>
+                    <p style="text-align: left; padding: 15px">HTML | CSS</p>
+                    <a href="https://github.com/satyam-jaat/My-Portfolio-" target="_blank">
+                        <button>View Project</button>
+                    </a>
+                </div>
 
-                            <div class="technologies">Technologies Used:</div>
-                            <div class="list">
-                                <ul>
-                                    <li>java</li>
-                                    <li>JDBC</li>
-                                    <li>OOPs</li>
-                                    <li>SQL</li>
-                                    <li>MYSQL</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div class="projects-box">
+                    <h2>Banking Management &#128176;</h2>
+                    <p style="text-align: left; padding: 15px">The Banking Management System lets users create accounts,
+                        deposit or withdraw money, and view transaction history, providing basic banking functionality
+                        in a user-friendly interface.</p>
+                    <h3>Technologies Used:</h3>
+                    <p style="text-align: left; padding: 15px">Java | JDBC | OOPs | SQL | MySQL</p>
+                    <a href="#projects">
+                        <button>View Project</button>
+                    </a>
                 </div>
 
             </div>
-
         </div>
-
     </section>
+
 
     <section>
         <div class="contact" id="contact">
@@ -907,6 +1366,13 @@
         <p>&copy; 2025, Created with ❤️ by <strong>Satyam Tomar</strong></p>
     </footer>
 
+    <script>
+        document.querySelectorAll('.header_details a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-toggle').checked = false;
+            });
+        });
+    </script>
 </body>
 
 </html>
