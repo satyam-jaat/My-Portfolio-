@@ -22,6 +22,13 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
         }
 
         /* Header */
@@ -53,12 +60,12 @@
         }
 
         .header_details {
+            margin-right: 20px;
             display: flex;
             align-items: center;
             gap: 15px;
             font-size: 22px;
-            background-color: rgba(245, 245, 245, 0.95);
-            border-left: 1px solid rgba(0, 0, 0, 0.1);
+            font-weight: bold;
             transition: transform 0.3s ease, opacity 0.3s ease;
             transform: translateX(100%);
             opacity: 0;
@@ -66,29 +73,6 @@
 
         .header_details a {
             color: rgb(111, 111, 111);
-        }
-
-        /* Hamburger Menu */
-        .nav-toggle {
-            display: none;
-            /* Hidden checkbox */
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 20px;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            background-color: rgb(53, 125, 131);
-            height: 3px;
-            width: 100%;
-            border-radius: 2px;
-            transition: all 0.3s ease;
         }
 
         @media (max-width: 768px) {
@@ -103,13 +87,6 @@
                 padding: 0 20px;
                 position: relative;
                 /* Ensure hamburger stays in flow */
-            }
-
-            .hamburger {
-                display: flex;
-                /* Show hamburger */
-                order: 2;
-                /* Ensure hamburger comes after logo */
             }
 
             .logo {
@@ -136,16 +113,6 @@
                 /* Full width */
             }
 
-            .nav-toggle:checked ~ .header_details {
-    display: flex;
-    transform: translateX(0);
-    opacity: 1;
-}
-
-            .nav-toggle {
-                display: none;
-                /* Keep checkbox hidden */
-            }
         }
 
         @media (max-width: 480px) {
@@ -153,17 +120,6 @@
                 font-size: 20px;
                 padding: 0 15px;
                 /* Slightly reduce padding for smaller screens */
-            }
-
-            .hamburger {
-                width: 25px;
-                /* Slightly smaller hamburger for tiny screens */
-                height: 18px;
-            }
-
-            .hamburger span {
-                height: 2px;
-                /* Thinner lines for hamburger */
             }
 
             .header_details a {
@@ -226,6 +182,7 @@
 
         /* About Section */
         .about {
+
             text-align: center;
             padding-top: 75px;
             padding-bottom: 80px;
@@ -376,33 +333,6 @@
             transform: translateY(-5px);
             box-shadow: 0 4px 6px black;
         }
-
-        /* .projects-title {
-            font-weight: bold;
-            font-size: 20px;
-            padding: 20px;
-            color: rgb(5, 33, 5);
-        } */
-
-        /* .projects-discription {
-            color: rgb(86, 86, 86);
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px 20px;
-        } */
-
-        /* .technologies {
-            font-weight: bold;
-            position: absolute;
-            top: 240px;
-            left: 20px;
-        }
-
-        .list {
-            text-align: left;
-            position: absolute;
-            top: 250px;
-        } */
 
         .projects-box button {
             position: absolute;
@@ -780,11 +710,85 @@
             }
         }
 
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 30px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .header_details {
+                flex-direction: column;
+                padding-left: 10px;
+            }
+
+            .image_container {
+                width: 200px;
+                height: 250px;
+            }
+
+            .about a,
+            .skills a,
+            .projects a,
+            .contact a,
+            .resume a,
+            .touch a {
+                font-size: 25px;
+            }
+
+            .skill-box {
+                font-size: 14px;
+            }
+
+            .projects-title {
+                font-size: 18px;
+            }
+
+            .resume-box {
+                width: 90%;
+                height: 300px;
+            }
+
+            .bt {
+                width: 50%;
+            }
+
+            .contact-me-container {
+                border-radius: 10px 50px 10px;
+            }
+
+            .profile-container {
+                margin: 50px auto;
+                /* Slightly reduce margin for smaller screens */
+                width: 95%;
+                /* Slightly wider for very small screens */
+            }
+
+            .profile-links {
+                gap: 10px;
+                /* Further reduce gap */
+            }
+
+            .profile-links a {
+                max-width: 120px;
+                /* Even smaller buttons */
+                font-size: 14px;
+                /* Smaller font size */
+                padding: 8px 10px;
+                /* Minimal padding */
+            }
+        }
+
         @media (max-width: 768px) {
             .header_name {
-                flex-direction: column;
-                align-items: flex-start;
-                padding-left: 20px;
+                display: flex;
+                /* flex-direction: row; */
+                align-items: center;
+                justify-content: space-between;
+                /* padding: 0 20px; */
+                /* position: relative; */
             }
 
             .header_details {
@@ -868,80 +872,7 @@
                 padding: 10px 12px;
                 /* Reduced padding for compactness */
             }
-        }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 30px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            .header_details {
-                flex-direction: column;
-                padding-left: 10px;
-            }
-
-            .image_container {
-                width: 200px;
-                height: 250px;
-            }
-
-            .about a,
-            .skills a,
-            .projects a,
-            .contact a,
-            .resume a,
-            .touch a {
-                font-size: 25px;
-            }
-
-            .skill-box {
-                font-size: 14px;
-            }
-
-            .projects-title {
-                font-size: 18px;
-            }
-
-            .resume-box {
-                width: 90%;
-                height: 300px;
-            }
-
-            .bt {
-                width: 50%;
-            }
-
-            .contact-me-container {
-                border-radius: 10px 50px 10px;
-            }
-
-            .profile-container {
-                margin: 50px auto;
-                /* Slightly reduce margin for smaller screens */
-                width: 95%;
-                /* Slightly wider for very small screens */
-            }
-
-            .profile-links {
-                gap: 10px;
-                /* Further reduce gap */
-            }
-
-            .profile-links a {
-                max-width: 120px;
-                /* Even smaller buttons */
-                font-size: 14px;
-                /* Smaller font size */
-                padding: 8px 10px;
-                /* Minimal padding */
-            }
-        }
-
-        @media (max-width: 768px) {
             .header_name {
                 display: flex;
                 flex-direction: row;
@@ -950,75 +881,13 @@
                 padding: 0 20px;
             }
 
-            .hamburger {
-                display: flex;
-                order: 2;
-            }
-
-            .logo {
-                order: 1;
-            }
-
-            .header_details {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: #f5f5f5;
-                flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                z-index: 999;
-                width: 100%;
-            }
-
-            .nav-toggle:checked+.hamburger+.header_details {
-                display: flex;
-            }
-
-            .nav-toggle {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header_name {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                padding: 0 20px;
-            }
-
-            .hamburger {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                width: 30px;
-                height: 20px;
-                cursor: pointer;
-            }
-
-            .hamburger span {
-                background-color: rgb(53, 125, 131);
-                height: 3px;
-                width: 100%;
-                border-radius: 2px;
-                transition: all 0.3s ease;
-            }
-
             .header_details {
                 display: none;
                 position: absolute;
                 top: 100%;
                 right: 0;
-                /* Align to the right */
                 left: auto;
-                /* Prevent stretching to the left */
                 width: 200px;
-                /* Fixed width for the dropdown */
                 background-color: #f5f5f5;
                 flex-direction: column;
                 align-items: center;
@@ -1026,15 +895,10 @@
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                 z-index: 999;
                 border-radius: 20px 50px 20px;
-                /* Apply border radius */
             }
 
-            .nav-toggle:checked~.header_details {
-                display: flex;
-            }
-
-            .nav-toggle {
-                display: none;
+            .logo {
+                order: 1;
             }
 
             .header_details a {
@@ -1047,37 +911,23 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .nav-toggle:checked+.header_name .hamburger span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
+            @media (min-width: 769px) {
+                .header_details {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
             }
 
-            .nav-toggle:checked+.header_name .hamburger span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .nav-toggle:checked+.header_name .hamburger span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
-        }
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
 </head>
 
 <body>
-
     <header>
         <nav class="na">
-            <input type="checkbox" id="nav-toggle" class="nav-toggle">
             <div class="header_name">
                 <a href="#" class="logo">Satyam</a>
-                <label for="nav-toggle" class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </label>
             </div>
             <span class="header_details">
                 <a href="#">Home</a>
@@ -1178,15 +1028,17 @@
                 <div class="projects-box">
                     <h2>CardioScan 🫀</h2>
                     <p style="text-align: left; padding: 15px">
-                        A machine learning-based system that classifies ECG images as normal or abnormal using Convolutional Neural Networks (CNN) and MobileNetV2.
+                        A machine learning-based system that classifies ECG images as normal or abnormal using
+                        Convolutional Neural Networks (CNN) and MobileNetV2.
                         Upload an ECG image and get instant results to support cardiac diagnosis.
                     </p>
-                
+
                     <h3>Technologies Used:</h3>
                     <p style="text-align: left; padding: 15px">
-                        HTML | CSS | JavaScript | Bootstrap | Uiverse | Python(Flask) | NumPy | Pandas | CNN | MobileNetV2 | Image Dataset (GitHub)
+                        HTML | CSS | JavaScript | Bootstrap | Uiverse | Python(Flask) | NumPy | Pandas | CNN |
+                        MobileNetV2 | Image Dataset (GitHub)
                     </p>
-                
+
                     <a href="https://github.com/satyam-jaat/normal-abnormal-ecg" target="_blank">
                         <button>View Project</button>
                     </a>
@@ -1195,52 +1047,57 @@
                 <div class="projects-box">
                     <h2>ChatBot using Gemini API 💬</h2>
                     <p style="text-align: left; padding: 15px">
-                        An intelligent and interactive ChatBot powered by Gemini API with a beautiful frontend design. It provides conversational responses using AI and serves as a virtual assistant through a seamless user interface.
+                        An intelligent and interactive ChatBot powered by Gemini API with a beautiful frontend design.
+                        It provides conversational responses using AI and serves as a virtual assistant through a
+                        seamless user interface.
                     </p>
-                
+
                     <h3>Technologies Used:</h3>
                     <p style="text-align: left; padding: 15px">
                         HTML | CSS | JavaScript | Python | Flask | Gemini API
                     </p>
-                
+
                     <a href="https://github.com/satyam-jaat/Gemini-API-ChatBot" target="_blank">
                         <button>View Project</button>
                     </a>
                 </div>
-                
+
 
                 <div class="projects-box">
                     <h2>Bubble-Based Skills Tracker 🎈</h2>
                     <p style="text-align: left; padding: 15px">
-                        A creative bubble-based system to track skill development. Users can add new skills as floating bubbles, and pop them when completed, making skill management fun and interactive.
+                        A creative bubble-based system to track skill development. Users can add new skills as floating
+                        bubbles, and pop them when completed, making skill management fun and interactive.
                     </p>
-                
+
                     <h3>Technologies Used:</h3>
                     <p style="text-align: left; padding: 15px">
                         HTML | CSS | JavaScript
                     </p>
-                
+
                     <a href="https://github.com/satyam-jaat/InteractiveSkillTracker" target="_blank">
                         <button>View Project</button>
                     </a>
                 </div>
-                
+
                 <div class="projects-box">
                     <h2>Web Code Editor 🧑‍💻</h2>
                     <p style="text-align: left; padding: 15px">
-                        A live code editor inspired by VS Code using Monaco Editor. Allows users to create and edit HTML, CSS, and JavaScript files on the left, while previewing the output in real-time on the right. Includes a toggle to switch to full preview mode.
+                        A live code editor inspired by VS Code using Monaco Editor. Allows users to create and edit
+                        HTML, CSS, and JavaScript files on the left, while previewing the output in real-time on the
+                        right. Includes a toggle to switch to full preview mode.
                     </p>
-                
+
                     <h3>Technologies Used:</h3>
                     <p style="text-align: left; padding: 15px">
                         HTML | CSS | JavaScript | Monaco Editor | iframe | Live Preview
                     </p>
-                
+
                     <a href="https://github.com/satyam-jaat/lite-web-dev-editor" target="_blank">
                         <button>View Project</button>
                     </a>
                 </div>
-                
+
 
                 <div class="projects-box">
                     <h2>AI-Based Interview Preparation System &#128221;</h2>
@@ -1365,14 +1222,6 @@
     <footer>
         <p>&copy; 2025, Created with ❤️ by <strong>Satyam Tomar</strong></p>
     </footer>
-
-    <script>
-        document.querySelectorAll('.header_details a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('nav-toggle').checked = false;
-            });
-        });
-    </script>
 </body>
 
 </html>
